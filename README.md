@@ -1,7 +1,7 @@
 # XUniDaq Enterprise Framework
 ### High-Performance .NET Abstraction Layer for ICP DAS Hardware
 
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg?style=flat-square)![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?style=flat-square)![Platform](https://img.shields.io/badge/platform-WinForms-lightgrey.svg?style=flat-square)![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)![Driver Support](https://img.shields.io/badge/driver-UniDAQ_DLL-orange.svg?style=flat-square)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg?style=flat-square)![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?style=flat-square)![Platform](https://img.shields.io/badge/platform-WinForms-lightgrey.svg?style=flat-square)![License](https://img.shields.io/badge/license-Apache--2.0-green.svg?style=flat-square)![Driver Support](https://img.shields.io/badge/driver-UniDAQ_DLL-orange.svg?style=flat-square)
 
 ---
 
@@ -40,7 +40,7 @@ Data is processed *before* it reaches the UI thread, ensuring performance:
 *   **Framework:** .NET Framework 4.7.2+.
 
 ### Installation
-1.  Add references to **`XUniDaq.dll`** and **`XModels.dll`**.
+1.  Add references to **`XUniDaq.dll`**.
 2.  Drag the `XUniDaq` component from the Toolbox onto your WinForms Designer.
 3.  Configure the `BoardIndex` and `PollingInterval` in the Properties window.
 
