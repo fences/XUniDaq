@@ -7,7 +7,7 @@
 
 ## 📖 Executive Summary
 
-**XUniDaq** is a comprehensive, industrial-grade middleware designed to bridge the gap between raw **ICP DAS C++ Drivers** and modern **.NET Applications**. It eliminates the complexity of unmanaged code interop, memory pointer management, and manual thread synchronization.
+**XUniDaq** is a comprehensive, industrial-grade middleware designed to bridge the gap between raw **ICP DAS Drivers** and modern **.NET Applications**. It eliminates the complexity of unmanaged code interop, memory pointer management, and manual thread synchronization.
 
 Built for **Mission-Critical Data Acquisition**, XUniDaq ensures robust stability through automated resource management, "Safe-Shutdown" protocols, and real-time signal processing (DSP) capabilities embedded directly within the driver wrapper.
 
@@ -22,7 +22,7 @@ Built for **Mission-Critical Data Acquisition**, XUniDaq ensures robust stabilit
 
 ### 2. Advanced Signal Processing (DSP)
 Data is processed *before* it reaches the UI thread, ensuring performance:
-*   **Linear Regression Engine:** Apply `y = ax + b` calibration per channel in real-time.
+*   **Linear & Polynominal Regression Engine:** Apply `y = ax + b` calibration per channel in real-time.
 *   **Noise Reduction:** Configurable `SimpleMovingAverage` (SMA) filter windows.
 *   **Matrix Data Marshaling:** Analog data is delivered as a 2D Matrix (`float[Samples, Channels]`), optimized for plotting libraries.
 
