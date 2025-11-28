@@ -11,6 +11,9 @@
 
 Built for **Mission-Critical Data Acquisition**, XUniDaq ensures robust stability through automated resource management, "Safe-Shutdown" protocols, and real-time signal processing (DSP) capabilities embedded directly within the driver wrapper.
 
+<p align="center">
+  <img src="intro01.png" alt="XUniDaq - ICP DAS .NET DAQ Component" />
+</p>
 ---
 
 ## ⚡ Key Features & Architecture
