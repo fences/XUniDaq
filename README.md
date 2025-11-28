@@ -14,8 +14,8 @@ Built for **Mission-Critical Data Acquisition**, XUniDaq ensures robust stabilit
 <p align="center">
   <img src="intro01.png" alt="XUniDaq - ICP DAS .NET DAQ Component" />
 </p>
----
 
+---
 ## ⚡ Key Features & Architecture
 
 ### 1. Core Stability & Lifecycle Management
