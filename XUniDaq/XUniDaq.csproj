@@ -51,7 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="XUniDaq.cs" />
+    <Compile Include="XUniDaq.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controllers\AnalogInputManager.cs" />
     <Compile Include="Controllers\DaqSystemManager.cs" />
     <Compile Include="Controllers\DigitalIOManager.cs" />

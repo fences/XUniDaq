@@ -91,6 +91,7 @@ namespace IcpDas.Daq.System
         private static readonly SemaphoreSlim _driverLock = new SemaphoreSlim(1, 1);
         private static int _driverRefCount = 0;
         private static bool _isDriverInitialized = false;
+        private static ushort _staticTotalBoards = 0;
         #endregion
 
         #region Fields & Properties
@@ -122,6 +123,71 @@ namespace IcpDas.Daq.System
         #endregion
 
         public DaqSystemManager() { }
+
+
+        #region Static Public Methods (New Feature)
+
+
+        public static async Task<List<BoardInfo>> GetAvailableBoardsStaticAsync()
+        {
+            await _driverLock.WaitAsync();
+            try
+            {
+                // 1. Initialize Driver if needed
+                if (!_isDriverInitialized)
+                {
+                    ushort totalBoards = 0;
+                    ushort rtn = UniDAQ.Ixud_DriverInit(ref totalBoards);
+
+                    if (rtn != UniDAQ.Ixud_NoErr)
+                    {
+                        throw new Exception($"Failed to initialize UniDAQ driver. Error Code: {rtn}");
+                    }
+
+                    _isDriverInitialized = true;
+                    _staticTotalBoards = totalBoards;
+                }
+
+                // 2. Scan boards using temporary local variables (Thread-Safe for static context)
+                var results = new List<BoardInfo>();
+
+                for (ushort i = 0; i < _staticTotalBoards; i++)
+                {
+                    UniDAQ.IXUD_DEVICE_INFO devInfo = new UniDAQ.IXUD_DEVICE_INFO();
+                    UniDAQ.IXUD_CARD_INFO cardInfo = new UniDAQ.IXUD_CARD_INFO();
+                    byte[] modeName = new byte[32];
+
+                    ushort rtn = UniDAQ.Ixud_GetCardInfo(i, ref devInfo, ref cardInfo, modeName);
+
+                    if (rtn == UniDAQ.Ixud_NoErr)
+                    {
+                        int length = Array.IndexOf(modeName, (byte)0);
+                        if (length == -1) length = modeName.Length;
+                        string model = Encoding.ASCII.GetString(modeName, 0, length).Trim();
+
+                        results.Add(new BoardInfo
+                        {
+                            Index = i,
+                            ModelName = model,
+                            AI = cardInfo.wAIChannels,
+                            AO = cardInfo.wAOChannels,
+                            DI = cardInfo.wDIPorts, // Note: Sometimes logic needs wDIPorts * 8 or similar depending on definition, keeping as is.
+                            DO = cardInfo.wDOPorts,
+                            DIO = cardInfo.wDIOPorts,
+                            IsRunning = false
+                        });
+                    }
+                }
+
+                return results;
+            }
+            finally
+            {
+                _driverLock.Release();
+            }
+        }
+
+        #endregion
 
         #region Status Management
         public bool IsBoardRunning(short boardNo)
