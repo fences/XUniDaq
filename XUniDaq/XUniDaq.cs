@@ -1,12 +1,11 @@
-﻿using DevicesContext.Controllers;
+﻿using IcpDas.Daq.Digital;
 using IcpDas.Daq.Analog;
-using IcpDas.Daq.System;
-using IcpDas.Daq.WinForms;
+using IcpDas.Daq.DaqSystem;
+using IcpDas.Daq.XDaq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Globalization;
@@ -16,11 +15,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using System.Xml.Linq;
 using UiNew;
 using XModels;
 
-namespace IcpDas.Daq.WinForms
+namespace IcpDas.Daq.XDaq
 {
    
     /// <summary>
@@ -675,72 +673,7 @@ namespace IcpDas.Daq.WinForms
 
     #endregion
 
-    #region Helper Classes (Design Time)
 
-    [TypeConverter(typeof(ExpandableObjectConverter))]
-    [Serializable]
-    public class AnalogChannelConfig
-    {
-        public override string ToString() => string.IsNullOrEmpty(ChannelName) ? $"Channel {PhysicalIndex}" : $"{ChannelName} (Idx:{PhysicalIndex})";
-
-        [Category("Settings"), Description("Logical name (e.g., 'Pressure')."), DefaultValue("Ch0")]
-        public string ChannelName { get; set; } = "Ch0";
-
-        [Category("Hardware"), Description("Physical channel index (0, 1, 2...)."), DefaultValue(0)]
-        public int PhysicalIndex { get; set; } = 0;
-
-        [Category("Hardware"), Description("Input voltage range."), DefaultValue(VoltageRange.Bipolar_10V)]
-        public VoltageRange Range { get; set; } = VoltageRange.Bipolar_10V;
-
-        [Category("Signal Processing"), Description("Moving Average filter size (0=off)."), DefaultValue(0)]
-        public int FilterWindowSize { get; set; } = 0;
-
-        [Category("Zero Calibration"), Description("Zero drift correction."), DefaultValue(0f)]
-        public float ZeroOffset { get; set; } = 0f;
-
-        [Category("Regression Calibration"), Description("Calibration correction.")]
-        public double[] Regression { get; set; } = null;
-    }
-
-    [TypeConverter(typeof(ExpandableObjectConverter))]
-    [Serializable]
-    public class DigitalInputChannelConfig
-    {
-        public override string ToString() => string.IsNullOrEmpty(ChannelName) ? $"DI {PortIndex}-{PhysicalIndex}" : $"{ChannelName}";
-
-        [Category("Settings"), DefaultValue("DI0")]
-        public string ChannelName { get; set; } = "DI0";
-
-        [Category("Hardware"), DefaultValue(0)]
-        public int PhysicalIndex { get; set; } = 0;
-
-        [Category("Hardware"), DefaultValue(0)]
-        public int PortIndex { get; set; } = 0;
-
-        [Category("Logic"), DefaultValue(false)]
-        public bool Invert { get; set; } = false;
-    }
-
-    [TypeConverter(typeof(ExpandableObjectConverter))]
-    [Serializable]
-    public class DigitalOutputChannelConfig
-    {
-        public override string ToString() => string.IsNullOrEmpty(ChannelName) ? $"DO {PortIndex}-{PhysicalIndex}" : $"{ChannelName}";
-
-        [Category("Settings"), DefaultValue("DO0")]
-        public string ChannelName { get; set; } = "DO0";
-
-        [Category("Hardware"), DefaultValue(0)]
-        public int PhysicalIndex { get; set; } = 0;
-
-        [Category("Hardware"), DefaultValue(0)]
-        public int PortIndex { get; set; } = 0;
-
-        [Category("Priority"), DefaultValue(0)]
-        public int Priority { get; set; } = 0;
-    }
-
-    #endregion
 }
 
 namespace UiNew
