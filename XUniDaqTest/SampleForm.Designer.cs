@@ -34,7 +34,6 @@ namespace XUniDaqTest
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SampleForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbStart = new System.Windows.Forms.ToolStripButton();
-            this.xUniDaq2 = new IcpDas.Daq.WinForms.XUniDaq(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -51,13 +50,14 @@ namespace XUniDaqTest
             this.btnRegression = new System.Windows.Forms.Button();
             this.btnZero = new System.Windows.Forms.Button();
             this.btnfilter = new System.Windows.Forms.Button();
-            this.xUniDaq1 = new IcpDas.Daq.WinForms.XUniDaq(this.components);
+            this.xUniDaq1 = new IcpDas.Daq.XDaq.XUniDaq(this.components);
+            this.xUniDaq2 = new IcpDas.Daq.XDaq.XUniDaq(this.components);
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.xUniDaq2)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xUniDaq1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xUniDaq2)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -79,25 +79,6 @@ namespace XUniDaqTest
             this.tsbStart.Size = new System.Drawing.Size(98, 22);
             this.tsbStart.Text = "Start Acquisition";
             this.tsbStart.Click += new System.EventHandler(this.tsbStart_Click);
-            // 
-            // xUniDaq2
-            // 
-            this.xUniDaq2.BoardIndex = ((short)(1));
-            this.xUniDaq2.DiChannels.Add(((IcpDas.Daq.WinForms.DigitalInputChannelConfig)(resources.GetObject("xUniDaq2.DiChannels"))));
-            this.xUniDaq2.DiChannels.Add(((IcpDas.Daq.WinForms.DigitalInputChannelConfig)(resources.GetObject("xUniDaq2.DiChannels1"))));
-            this.xUniDaq2.DiChannels.Add(((IcpDas.Daq.WinForms.DigitalInputChannelConfig)(resources.GetObject("xUniDaq2.DiChannels2"))));
-            this.xUniDaq2.DiChannels.Add(((IcpDas.Daq.WinForms.DigitalInputChannelConfig)(resources.GetObject("xUniDaq2.DiChannels3"))));
-            this.xUniDaq2.DiChannels.Add(((IcpDas.Daq.WinForms.DigitalInputChannelConfig)(resources.GetObject("xUniDaq2.DiChannels4"))));
-            this.xUniDaq2.DiChannels.Add(((IcpDas.Daq.WinForms.DigitalInputChannelConfig)(resources.GetObject("xUniDaq2.DiChannels5"))));
-            this.xUniDaq2.DiChannels.Add(((IcpDas.Daq.WinForms.DigitalInputChannelConfig)(resources.GetObject("xUniDaq2.DiChannels6"))));
-            this.xUniDaq2.DoChannels.Add(((IcpDas.Daq.WinForms.DigitalOutputChannelConfig)(resources.GetObject("xUniDaq2.DoChannels"))));
-            this.xUniDaq2.DoChannels.Add(((IcpDas.Daq.WinForms.DigitalOutputChannelConfig)(resources.GetObject("xUniDaq2.DoChannels1"))));
-            this.xUniDaq2.DoChannels.Add(((IcpDas.Daq.WinForms.DigitalOutputChannelConfig)(resources.GetObject("xUniDaq2.DoChannels2"))));
-            this.xUniDaq2.DoChannels.Add(((IcpDas.Daq.WinForms.DigitalOutputChannelConfig)(resources.GetObject("xUniDaq2.DoChannels3"))));
-            this.xUniDaq2.DoChannels.Add(((IcpDas.Daq.WinForms.DigitalOutputChannelConfig)(resources.GetObject("xUniDaq2.DoChannels4"))));
-            this.xUniDaq2.DiDataReceived += new System.EventHandler<XModels.DigitalFrameEventArgs>(this.xUniDaq2_DiDataReceived);
-            this.xUniDaq2.ErrorOccurred += new System.EventHandler<IcpDas.Daq.System.DaqErrorEventArgs>(this.xUniDaq2_ErrorOccurred);
-            this.xUniDaq2.StatusUpdated += new System.EventHandler<string>(this.xUniDaq2_StatusUpdated);
             // 
             // tableLayoutPanel1
             // 
@@ -265,16 +246,27 @@ namespace XUniDaqTest
             // 
             // xUniDaq1
             // 
-            this.xUniDaq1.AiChannels.Add(((IcpDas.Daq.WinForms.AnalogChannelConfig)(resources.GetObject("xUniDaq1.AiChannels"))));
-            this.xUniDaq1.AiChannels.Add(((IcpDas.Daq.WinForms.AnalogChannelConfig)(resources.GetObject("xUniDaq1.AiChannels1"))));
-            this.xUniDaq1.AiChannels.Add(((IcpDas.Daq.WinForms.AnalogChannelConfig)(resources.GetObject("xUniDaq1.AiChannels2"))));
-            this.xUniDaq1.AiChannels.Add(((IcpDas.Daq.WinForms.AnalogChannelConfig)(resources.GetObject("xUniDaq1.AiChannels3"))));
+            this.xUniDaq1.AiChannels.Add(((IcpDas.Daq.XDaq.AnalogChannelConfig)(resources.GetObject("xUniDaq1.AiChannels"))));
+            this.xUniDaq1.AiChannels.Add(((IcpDas.Daq.XDaq.AnalogChannelConfig)(resources.GetObject("xUniDaq1.AiChannels1"))));
+            this.xUniDaq1.AiChannels.Add(((IcpDas.Daq.XDaq.AnalogChannelConfig)(resources.GetObject("xUniDaq1.AiChannels2"))));
             this.xUniDaq1.BoardIndex = ((short)(0));
             this.xUniDaq1.DataCount = ((uint)(200u));
+            this.xUniDaq1.SamplingRate = 100000F;
             this.xUniDaq1.AiDataReceived += new System.EventHandler<XModels.AnalogMultiChannelDataEventArgs>(this.xUniDaq1_AiDataReceived);
             this.xUniDaq1.DiDataReceived += new System.EventHandler<XModels.DigitalFrameEventArgs>(this.xUniDaq1_DiDataReceived);
-            this.xUniDaq1.ErrorOccurred += new System.EventHandler<IcpDas.Daq.System.DaqErrorEventArgs>(this.xUniDaq1_ErrorOccurred);
+            this.xUniDaq1.ErrorOccurred += new System.EventHandler<IcpDas.Daq.DaqSystem.DaqErrorEventArgs>(this.xUniDaq1_ErrorOccurred);
             this.xUniDaq1.StatusUpdated += new System.EventHandler<string>(this.xUniDaq1_StatusUpdated);
+            // 
+            // xUniDaq2
+            // 
+            this.xUniDaq2.BoardIndex = ((short)(1));
+            this.xUniDaq2.DiChannels.Add(((IcpDas.Daq.XDaq.DigitalInputChannelConfig)(resources.GetObject("xUniDaq2.DiChannels"))));
+            this.xUniDaq2.DiChannels.Add(((IcpDas.Daq.XDaq.DigitalInputChannelConfig)(resources.GetObject("xUniDaq2.DiChannels1"))));
+            this.xUniDaq2.DoChannels.Add(((IcpDas.Daq.XDaq.DigitalOutputChannelConfig)(resources.GetObject("xUniDaq2.DoChannels"))));
+            this.xUniDaq2.DoChannels.Add(((IcpDas.Daq.XDaq.DigitalOutputChannelConfig)(resources.GetObject("xUniDaq2.DoChannels1"))));
+            this.xUniDaq2.DiDataReceived += new System.EventHandler<XModels.DigitalFrameEventArgs>(this.xUniDaq2_DiDataReceived);
+            this.xUniDaq2.ErrorOccurred += new System.EventHandler<IcpDas.Daq.DaqSystem.DaqErrorEventArgs>(this.xUniDaq2_ErrorOccurred);
+            this.xUniDaq2.StatusUpdated += new System.EventHandler<string>(this.xUniDaq2_StatusUpdated);
             // 
             // SampleForm
             // 
@@ -290,12 +282,12 @@ namespace XUniDaqTest
             this.Load += new System.EventHandler(this.Form1_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.xUniDaq2)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xUniDaq1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xUniDaq2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -304,13 +296,13 @@ namespace XUniDaqTest
         #endregion
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsbStart;
-        private IcpDas.Daq.WinForms.XUniDaq xUniDaq2;
+     
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.RichTextBox txtInfo;
-        private IcpDas.Daq.WinForms.XUniDaq xUniDaq1;
+
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
@@ -322,6 +314,8 @@ namespace XUniDaqTest
         private System.Windows.Forms.TextBox txtRegresion;
         private System.Windows.Forms.TextBox txtZero;
         private System.Windows.Forms.Label label2;
+        private IcpDas.Daq.XDaq.XUniDaq xUniDaq1;
+        private IcpDas.Daq.XDaq.XUniDaq xUniDaq2;
     }
 }
 

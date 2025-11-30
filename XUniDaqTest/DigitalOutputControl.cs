@@ -1,4 +1,4 @@
-﻿using IcpDas.Daq.WinForms;
+﻿using IcpDas.Daq.XDaq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

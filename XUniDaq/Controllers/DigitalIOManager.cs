@@ -7,7 +7,7 @@ using XModels;
 
 
 
-namespace DevicesContext.Controllers
+namespace IcpDas.Daq.Digital
 {
     public class DigitalIoManager : IDisposable
     {

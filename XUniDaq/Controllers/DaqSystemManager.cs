@@ -1,5 +1,6 @@
-﻿using DevicesContext.Controllers;
+﻿
 using IcpDas.Daq.Analog;
+using IcpDas.Daq.Digital;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UniDAQ_Ns;
 
-namespace IcpDas.Daq.System
+namespace IcpDas.Daq.DaqSystem
 {
     #region Enums & EventArgs Models
 

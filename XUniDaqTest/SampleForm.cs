@@ -1,7 +1,6 @@
 ﻿using DevExpress.XtraPrinting.Native;
-using IcpDas.Daq.Service;
-using IcpDas.Daq.System;
-using IcpDas.Daq.WinForms;
+using IcpDas.Daq.DaqSystem;
+using IcpDas.Daq.XDaq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,8 +32,6 @@ namespace XUniDaqTest
         {
             InitializeLayout();
 
-            if (xUniDaq1 != null) 
-                xUniDaq1.UpdateRegression(0, new double[] { 0.0, 0.5 });
 
             if (xUniDaq2 != null && digitalOutputControl != null)
             {
